@@ -9,7 +9,7 @@ export default function Testimonials({ testimonials, onTestimonialAdded }) {
     e.preventDefault();
     setStatus('Submitting...');
     try {
-      const res = await fetch('/api/reviews', {
+      const res = await fetch('https://portfolio-z2hy.onrender.com/api/reviews', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ author, quote })

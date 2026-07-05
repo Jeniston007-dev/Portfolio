@@ -15,21 +15,21 @@ function App() {
   const [selectedFilter, setSelectedFilter] = useState(null);
 
   const fetchReviews = () => {
-    fetch('/api/reviews')
+    fetch('https://portfolio-z2hy.onrender.com/api/reviews')
       .then(res => res.json())
       .then(data => setTestimonials(data))
       .catch(console.error);
   };
 
   useEffect(() => {
-    document.title = `${profile.name} | Portfolio`;
-    
+    document.title = "Portfolio";
+
     // Fetch dynamic data
-    fetch('/api/projects')
+    fetch('https://portfolio-z2hy.onrender.com/api/projects')
       .then(res => res.json())
       .then(data => setProjects(data))
       .catch(console.error);
-      
+
     fetchReviews();
   }, []);
 
@@ -49,13 +49,13 @@ function App() {
 
   const filteredProjects = selectedFilter
     ? projects.filter(p => {
-        const searchTerms = [p.title, p.stack, p.description].join(' ').toLowerCase();
-        let filterWord = selectedFilter.toLowerCase();
-        if (filterWord === 'landing pages') filterWord = 'landing page';
-        if (filterWord === 'e-commerce') filterWord = 'commerce';
-        
-        return searchTerms.includes(filterWord);
-      })
+      const searchTerms = [p.title, p.stack, p.description].join(' ').toLowerCase();
+      let filterWord = selectedFilter.toLowerCase();
+      if (filterWord === 'landing pages') filterWord = 'landing page';
+      if (filterWord === 'e-commerce') filterWord = 'commerce';
+
+      return searchTerms.includes(filterWord);
+    })
     : [];
 
   return (
@@ -73,7 +73,7 @@ function App() {
 
       <main>
         <Hero name={profile.name} headline={profile.headline} fiverrLink={profile.fiverrLink} />
-        
+
         <section className="panel" style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
           <About intro={profile.intro} stats={stats} />
           <Skills skills={profile.skills} />
@@ -85,10 +85,10 @@ function App() {
         <Contact contactEmail={profile.contactEmail} fiverrLink={profile.fiverrLink} />
       </main>
 
-      <ServiceModal 
-        serviceTitle={selectedFilter} 
-        projects={filteredProjects} 
-        onClose={() => setSelectedFilter(null)} 
+      <ServiceModal
+        serviceTitle={selectedFilter}
+        projects={filteredProjects}
+        onClose={() => setSelectedFilter(null)}
       />
 
     </div>
