@@ -10,8 +10,8 @@ import Contact from './components/Contact.jsx';
 import ServiceModal from './components/ServiceModal.jsx';
 
 function App() {
-  const [projects, setProjects] = useState(profile.projects);
-  const [testimonials, setTestimonials] = useState(profile.testimonials);
+  const [projects, setProjects] = useState([]);
+  const [testimonials, setTestimonials] = useState([]);
   const [selectedFilter, setSelectedFilter] = useState(null);
 
   const fetchReviews = () => {
